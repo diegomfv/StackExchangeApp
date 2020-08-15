@@ -72,6 +72,10 @@ class MainActivityViewModel (
             )
     }
 
+    fun onUserClicked (user: User) {
+        event.value = Event(EventModel.Navigation(user))
+    }
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()

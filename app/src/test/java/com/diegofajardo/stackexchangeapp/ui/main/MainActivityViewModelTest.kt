@@ -7,6 +7,7 @@ import com.diegofajardo.stackexchangeapp.domain.User
 import com.diegofajardo.stackexchangeapp.testutils.SchedulerProviderTrampoline
 import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
 import com.diegofajardo.stackexchangeapp.utils.ErrorMapper
+import com.diegofajardo.stackexchangeapp.utils.Event
 import com.diegofajardo.stackexchangeapp.utils.SchedulerProviderImpl
 import com.diegofajardo.stackexchangeapp.utils.SimpleErrorMapper
 import com.nhaarman.mockitokotlin2.*
@@ -16,6 +17,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -32,6 +34,7 @@ class MainActivityViewModelTest {
     private lateinit var mainActivityViewModel: MainActivityViewModel
 
     private val observer: Observer<MainActivityViewModel.UiModel> = mock()
+    private val eventObserver: Observer<Event<MainActivityViewModel.EventModel>> = mock()
 
     @Before
     fun setUp() {
@@ -45,7 +48,6 @@ class MainActivityViewModelTest {
 
         mainActivityViewModel.getUsers("some query")
         verify(getUsersUsecase, times(1)).invoke(any())
-
     }
 
     @Test
@@ -103,6 +105,14 @@ class MainActivityViewModelTest {
             mainActivityViewModel.getUsers("some query")
             verify(observer, times(1)).onChanged(MainActivityViewModel.UiModel.Error("Error message not available"))
         }
+    }
+
+    @Test
+    fun `onUserClicked when called event is updated with Navigation(user)`() {
+        val user = User("username", "123")
+        mainActivityViewModel.onUserClicked(user)
+        mainActivityViewModel.event.observeForever(eventObserver)
+        verify(eventObserver, times(1)).onChanged(ArgumentMatchers.refEq(Event(MainActivityViewModel.EventModel.Navigation(user))))
     }
 
     private fun getListFakeUsers(): List<User> {

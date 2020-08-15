@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.diegofajardo.stackexchangeapp.R
 import com.diegofajardo.stackexchangeapp.di.ServiceLocator
 import com.diegofajardo.stackexchangeapp.domain.User
+import com.diegofajardo.stackexchangeapp.ui.detail.DetailActivity
 import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapter
+import com.diegofajardo.stackexchangeapp.utils.startActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -68,7 +70,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun showContent(users: List<User>) {
         if (adapter == null) {
-            adapter = UsersAdapter(ServiceLocator.provideUsersAdapterUiManagerImpl()) { }
+            adapter = UsersAdapter(ServiceLocator.provideUsersAdapterUiManagerImpl()) {
+                mainActivityViewModel.onUserClicked(it)
+            }
         }
         adapter?.users = users
         recycler_view?.setHasFixedSize(true)
@@ -100,7 +104,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToDetails (user: User) {
-        TODO("Not implemented")
+        startActivity<DetailActivity> {
+            putExtra(DetailActivity.ARGUMENT_USER, user)
+        }
     }
 
 }
