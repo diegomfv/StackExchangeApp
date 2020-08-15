@@ -13,12 +13,14 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
 
+        android:inputType="text"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        android:text="Some text here"
+        android:hint="@string/search"
 
-        />
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/submit_query_button"
@@ -28,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-        android:text="Search"
+        android:hint="@string/search"
         />
 
     <androidx.recyclerview.widget.RecyclerView
