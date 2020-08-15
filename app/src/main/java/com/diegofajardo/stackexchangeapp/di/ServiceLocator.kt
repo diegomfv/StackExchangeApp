@@ -18,8 +18,8 @@ object ServiceLocator {
 
     fun provideMainActivityViewModelFactory () = MainActivityViewModel.Factory(
         app = app,
-        getUsersUsecase = UsecaseModule.provideGetUsersUsecase(),
-        schedulerProvider = RxModule.provideSchedulerProvider(),
+        getUsersUsecase = UsecaseModule.usersUsecase,
+        schedulerProvider = RxModule.schedulerProvider,
         errorMapper = UtilsModule.provideErrorMapper()
     )
 

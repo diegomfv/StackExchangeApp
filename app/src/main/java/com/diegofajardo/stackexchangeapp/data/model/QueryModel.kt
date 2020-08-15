@@ -1,4 +1,4 @@
-package com.diegofajardo.stackexchangeapp.data.server.model
+package com.diegofajardo.stackexchangeapp.data.model
 
 class QueryModel (
     private val containsUsername: String

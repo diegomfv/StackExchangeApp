@@ -4,6 +4,6 @@ import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
 
 object UsecaseModule {
 
-    fun provideGetUsersUsecase () = GetUsersUsecase()
+    val usersUsecase by lazy { GetUsersUsecase(DataModule.userRepository) }
 
 }

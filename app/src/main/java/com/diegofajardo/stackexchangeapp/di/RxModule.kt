@@ -6,8 +6,8 @@ import io.reactivex.schedulers.Schedulers
 
 object RxModule {
 
-    fun provideSchedulerProvider () : SchedulerProvider {
-        return SchedulerProvider(
+    val schedulerProvider by lazy {
+        SchedulerProvider(
             androidScheduler = AndroidSchedulers.mainThread(),
             ioScheduler = Schedulers.io(),
             computationScheduler = Schedulers.computation()
