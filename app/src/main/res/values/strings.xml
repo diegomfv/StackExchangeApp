@@ -2,4 +2,12 @@
     <string name="app_name">StackExchangeApp</string>
 
     <string name="search">Search</string>
+
+    <string name="hint_users_adapter_reputation">123</string>
+    <string name="hint_users_adapter_username">Username</string>
+
+    <string name="loading_please_wait">Loading… please wait</string>
+    <string name="no_items_available">No items available</string>
+    <string name="welcome_message">Welcome! Please, use the search bar to find users. Have fun!</string>
+    <string name="error_message_not_available">Error message not available</string>
 </resources>
