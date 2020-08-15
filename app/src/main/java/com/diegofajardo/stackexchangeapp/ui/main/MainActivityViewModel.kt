@@ -6,7 +6,10 @@ import androidx.lifecycle.*
 import com.diegofajardo.stackexchangeapp.data.model.QueryModel
 import com.diegofajardo.stackexchangeapp.domain.User
 import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
-import com.diegofajardo.stackexchangeapp.utils.*
+import com.diegofajardo.stackexchangeapp.utils.ErrorMapper
+import com.diegofajardo.stackexchangeapp.utils.Event
+import com.diegofajardo.stackexchangeapp.utils.SchedulerProvider
+import com.diegofajardo.stackexchangeapp.utils.SchedulerProviderImpl
 import io.reactivex.disposables.CompositeDisposable
 
 

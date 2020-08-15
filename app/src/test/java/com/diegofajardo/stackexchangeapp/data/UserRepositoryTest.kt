@@ -3,7 +3,6 @@ package com.diegofajardo.stackexchangeapp.data
 import com.diegofajardo.stackexchangeapp.data.model.QueryModel
 import com.diegofajardo.stackexchangeapp.data.repository.UserRepository
 import com.diegofajardo.stackexchangeapp.data.source.server.RemoteDataSource
-import com.diegofajardo.stackexchangeapp.domain.User
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
