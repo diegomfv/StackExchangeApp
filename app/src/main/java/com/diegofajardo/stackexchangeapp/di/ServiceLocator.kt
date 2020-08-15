@@ -21,7 +21,7 @@ object ServiceLocator {
         app = app,
         getUsersUsecase = UsecaseModule.usersUsecase,
         schedulerProvider = RxModule.schedulerProvider,
-        errorMapper = UtilsModule.provideErrorMapper()
+        errorMapper = UtilsModule.provideErrorMapper(app)
     )
 
     fun provideUsersAdapterUiManagerImpl () : UsersAdapterUiManagerImpl {
