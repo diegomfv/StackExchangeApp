@@ -1,7 +1,8 @@
-package com.diegofajardo.stackexchangeapp
+package com.diegofajardo.stackexchangeapp.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.diegofajardo.stackexchangeapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
