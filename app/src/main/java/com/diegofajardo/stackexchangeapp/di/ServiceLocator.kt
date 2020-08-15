@@ -2,6 +2,7 @@ package com.diegofajardo.stackexchangeapp.di
 
 import com.diegofajardo.stackexchangeapp.App
 import com.diegofajardo.stackexchangeapp.ui.main.MainActivityViewModel
+import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapterUiManagerImpl
 
 /**
  * Due to the size of the project I decided to use the Service Locator pattern instead of
@@ -22,5 +23,9 @@ object ServiceLocator {
         schedulerProvider = RxModule.schedulerProvider,
         errorMapper = UtilsModule.provideErrorMapper()
     )
+
+    fun provideUsersAdapterUiManagerImpl () : UsersAdapterUiManagerImpl {
+        return UiModule.provideUsersAdapterUiManagerImpl()
+    }
 
 }
