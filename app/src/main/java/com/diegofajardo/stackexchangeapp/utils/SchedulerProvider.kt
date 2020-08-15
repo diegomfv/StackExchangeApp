@@ -4,6 +4,6 @@ import io.reactivex.Scheduler
 
 class SchedulerProvider (
     val androidScheduler: Scheduler,
-    val subscribeScheduler: Scheduler,
-    val observerScheduler: Scheduler
+    val ioScheduler: Scheduler,
+    val computationScheduler: Scheduler
 )
