@@ -11,8 +11,8 @@ fun ServerUser.toDomainUser(): User {
         username = username,
         reputation = reputation,
         badgeCounts = serverBadgeCounts.toDomainBadgeCounts(),
-        location = location,
-        age = age,
+        location = location ?: "Location not available",
+        age = age ?: "Age not available",
         creationDate = creationDate,
         profileImageUrl = profileImageUrl
     )

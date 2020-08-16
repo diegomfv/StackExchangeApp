@@ -11,7 +11,7 @@ data class User(
 
     val badgeCounts: BadgeCounts,
     val location: String,
-    val age: String?,
+    val age: String,
     val creationDate: Long,
     val profileImageUrl: String
 ) : Parcelable

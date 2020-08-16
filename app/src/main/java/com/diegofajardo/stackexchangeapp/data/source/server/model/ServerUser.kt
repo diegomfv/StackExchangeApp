@@ -11,7 +11,7 @@ data class ServerUser(
     @SerializedName("reputation") val reputation: String,
 
     @SerializedName("badge_counts") val serverBadgeCounts: ServerBadgeCounts,
-    @SerializedName("location") val location: String,
+    @SerializedName("location") val location: String?,
     @SerializedName("age") val age: String?,
     @SerializedName("creation_date") val creationDate: Long,
     @SerializedName("profile_image") val profileImageUrl: String
