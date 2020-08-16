@@ -5,6 +5,7 @@ The app displays up to 20 users that are filtered by name.
 There is also the option to see the user details in a details screen.
 
 The app is written in Kotlin and uses:
+- Clean architecture principles.
 - MVVM as presentation pattern.
 - RxJava2 to handle async network calls.
 - Retrofit for networking operations.
