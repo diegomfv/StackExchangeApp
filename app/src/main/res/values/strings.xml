@@ -10,4 +10,15 @@
     <string name="no_items_available">No items available</string>
     <string name="welcome_message">Welcome! Please, use the search bar to find users. Have fun!</string>
     <string name="error_message_not_available">Error message not available</string>
+    <string name="content_description_user_avatar">User avatar</string>
+
+    <string name="username">username</string>
+    <string name="reputation">reputation</string>
+    <string name="bronze_badges">bronze badges</string>
+    <string name="silver_badges">silver badges</string>
+    <string name="gold_badges">gold badges</string>
+    <string name="location">location</string>
+    <string name="age">age</string>
+    <string name="creation_date">creation date</string>
+
 </resources>
