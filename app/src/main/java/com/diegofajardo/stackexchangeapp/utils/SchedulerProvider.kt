@@ -8,7 +8,7 @@ interface SchedulerProviderImpl {
     val computationScheduler: Scheduler
 }
 
-class SchedulerProvider (
+class SchedulerProvider(
     override val androidScheduler: Scheduler,
     override val ioScheduler: Scheduler,
     override val computationScheduler: Scheduler

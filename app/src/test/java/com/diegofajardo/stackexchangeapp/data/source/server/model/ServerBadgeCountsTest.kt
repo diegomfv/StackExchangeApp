@@ -13,8 +13,8 @@ import org.robolectric.annotation.Config
 class ServerBadgeCountsTest {
 
     @Test
-    fun isSerializable () {
-        val serverBadgeCounts = ServerBadgeCounts(1,2,3)
+    fun isSerializable() {
+        val serverBadgeCounts = ServerBadgeCounts(1, 2, 3)
         val bundle = Bundle()
         bundle.putParcelable("key", serverBadgeCounts)
 

@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.item_user.view.*
 
 class UsersAdapter(
     private val uiManager: UsersAdapterUiManagerImpl,
-    private val listener: (User) -> Unit) :
+    private val listener: (User) -> Unit
+) :
     RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
     private var lastClickTime: Long = 0

@@ -66,9 +66,6 @@ class MainActivityViewModel(
                 { e ->
                     e.printStackTrace()
                     _model.value = UiModel.Error(errorMapper.getErrorMessage(e))
-                },
-                {
-                    println("Completed")
                 }
             )
     }

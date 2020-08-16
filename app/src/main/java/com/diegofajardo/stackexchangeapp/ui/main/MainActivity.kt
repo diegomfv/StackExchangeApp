@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var lastClickTime : Long = 0
+    private var lastClickTime: Long = 0
 
     lateinit var mainActivityViewModel: MainActivityViewModel
     var adapter: UsersAdapter? = null
@@ -28,11 +28,14 @@ class MainActivity : AppCompatActivity() {
         subscribeToSearch()
     }
 
-    private fun subscribeToModel () {
-        mainActivityViewModel = ViewModelProvider(this, ServiceLocator.provideMainActivityViewModelFactory())
-            .get(MainActivityViewModel::class.java)
+    private fun subscribeToModel() {
+        mainActivityViewModel =
+            ViewModelProvider(this, ServiceLocator.provideMainActivityViewModelFactory())
+                .get(MainActivityViewModel::class.java)
         mainActivityViewModel.model.observe(this, Observer(::updateUi))
-        mainActivityViewModel.event.observe(this, Observer { it.getContentIfNotHandled()?.let { handleEvent(it) }})
+        mainActivityViewModel.event.observe(
+            this,
+            Observer { it.getContentIfNotHandled()?.let { handleEvent(it) } })
     }
 
     private fun subscribeToSearch() {
@@ -54,13 +57,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleEvent (event: MainActivityViewModel.EventModel) {
+    private fun handleEvent(event: MainActivityViewModel.EventModel) {
         when (event) {
             is MainActivityViewModel.EventModel.Navigation -> navigateToDetails(event.user)
         }
     }
 
-    private fun showProgress () {
+    private fun showProgress() {
         welcome_placeholder?.visibility = View.GONE
         progress_placeholder?.visibility = View.VISIBLE
         recycler_view?.visibility = View.GONE
@@ -85,7 +88,7 @@ class MainActivity : AppCompatActivity() {
         error_placeholder?.visibility = View.GONE
     }
 
-    private fun showEmptyContent () {
+    private fun showEmptyContent() {
         welcome_placeholder?.visibility = View.GONE
         progress_placeholder?.visibility = View.GONE
         recycler_view?.visibility = View.GONE
@@ -103,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         error_placeholder?.visibility = View.VISIBLE
     }
 
-    private fun navigateToDetails (user: User) {
+    private fun navigateToDetails(user: User) {
         startActivity<DetailActivity> {
             putExtra(DetailActivity.ARGUMENT_USER, user)
         }

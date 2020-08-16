@@ -7,7 +7,7 @@ import io.reactivex.Observable
 
 object TestNetworkModule {
 
-    val fakeStackExchangeServerEndpoints : StackExchangeServerEndpoints by lazy { FakeStackExchangeServerEndpoints() }
+    val fakeStackExchangeServerEndpoints: StackExchangeServerEndpoints by lazy { FakeStackExchangeServerEndpoints() }
 }
 
 class FakeStackExchangeServerEndpoints : StackExchangeServerEndpoints {

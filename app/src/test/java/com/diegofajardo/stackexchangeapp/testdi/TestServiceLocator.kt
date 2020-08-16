@@ -4,11 +4,9 @@ import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
 
 object TestServiceLocator {
 
-    fun provideFakeGetUsersUsecase () : GetUsersUsecase {
+    fun provideFakeGetUsersUsecase(): GetUsersUsecase {
         return TestUsecaseModule.fakeGetUsersUsecase
     }
-
-
 
 
 }

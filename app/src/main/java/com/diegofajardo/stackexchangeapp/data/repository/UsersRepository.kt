@@ -5,11 +5,11 @@ import com.diegofajardo.stackexchangeapp.data.source.server.RemoteDataSource
 import com.diegofajardo.stackexchangeapp.domain.User
 import io.reactivex.Observable
 
-class UserRepository (
+class UserRepository(
     private val remoteDataSource: RemoteDataSource
 ) {
 
-    fun getUsers (queryModel: QueryModel) : Observable<User> {
+    fun getUsers(queryModel: QueryModel): Observable<User> {
         return remoteDataSource.getUsers(queryModel)
     }
 

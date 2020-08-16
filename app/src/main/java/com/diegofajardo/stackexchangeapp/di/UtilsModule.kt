@@ -6,7 +6,7 @@ import com.diegofajardo.stackexchangeapp.utils.SimpleErrorMapper
 
 object UtilsModule {
 
-    fun provideErrorMapper (app: Application) : ErrorMapper {
+    fun provideErrorMapper(app: Application): ErrorMapper {
         return SimpleErrorMapper(app)
     }
 

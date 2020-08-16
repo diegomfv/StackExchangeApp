@@ -5,7 +5,7 @@ import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapterUiManagerIm
 
 object UiModule {
 
-    fun provideUsersAdapterUiManagerImpl () : UsersAdapterUiManagerImpl {
+    fun provideUsersAdapterUiManagerImpl(): UsersAdapterUiManagerImpl {
         return UsersAdapterUiManager()
     }
 

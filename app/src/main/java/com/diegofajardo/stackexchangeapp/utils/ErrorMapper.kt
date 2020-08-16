@@ -4,10 +4,10 @@ import android.app.Application
 import com.diegofajardo.stackexchangeapp.R
 
 interface ErrorMapper {
-    fun getErrorMessage (throwable: Throwable?) : String
+    fun getErrorMessage(throwable: Throwable?): String
 }
 
-class SimpleErrorMapper (
+class SimpleErrorMapper(
     private val app: Application
 ) : ErrorMapper {
 

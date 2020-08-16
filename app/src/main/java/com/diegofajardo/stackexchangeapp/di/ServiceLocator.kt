@@ -17,23 +17,25 @@ object ServiceLocator {
     lateinit var app: App
         private set
 
-    fun init (app: App) { this.app = app }
+    fun init(app: App) {
+        this.app = app
+    }
 
     ////
 
-    fun provideMainActivityViewModelFactory () = MainActivityViewModel.Factory(
+    fun provideMainActivityViewModelFactory() = MainActivityViewModel.Factory(
         app = app,
         getUsersUsecase = UsecaseModule.usersUsecase,
         schedulerProvider = RxModule.schedulerProvider,
         errorMapper = UtilsModule.provideErrorMapper(app)
     )
 
-    fun provideDetailActivityViewModelFactory (user: User) = DetailActivityViewModel.Factory(
+    fun provideDetailActivityViewModelFactory(user: User) = DetailActivityViewModel.Factory(
         app = app,
         user = user
     )
 
-    fun provideUsersAdapterUiManagerImpl () : UsersAdapterUiManagerImpl {
+    fun provideUsersAdapterUiManagerImpl(): UsersAdapterUiManagerImpl {
         return UiModule.provideUsersAdapterUiManagerImpl()
     }
 

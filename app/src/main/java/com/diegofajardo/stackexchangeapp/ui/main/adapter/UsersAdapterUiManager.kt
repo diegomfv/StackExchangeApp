@@ -8,18 +8,18 @@ import com.diegofajardo.stackexchangeapp.domain.User
  * See commented out code.
  * */
 interface UsersAdapterUiManagerImpl {
-    fun getReputation (user: User) : String
-    fun getUsername (user: User) : String
+    fun getReputation(user: User): String
+    fun getUsername(user: User): String
 }
 
 class UsersAdapterUiManager :
     UsersAdapterUiManagerImpl {
 
-    override fun getReputation(user: User) : String {
+    override fun getReputation(user: User): String {
         return user.reputation
     }
 
-    override fun getUsername(user: User) : String {
+    override fun getUsername(user: User): String {
         return user.username
     }
 }

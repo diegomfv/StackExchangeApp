@@ -2,7 +2,6 @@ package com.diegofajardo.stackexchangeapp.data.source.server.model
 
 import android.os.Build
 import android.os.Bundle
-import org.junit.Assert
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,14 +13,14 @@ import org.robolectric.annotation.Config
 class ItemsTest {
 
     @Test
-    fun isSerializable () {
+    fun isSerializable() {
         val items = Items(listOf(getFakeServerUser()))
         val bundle = Bundle()
         bundle.putParcelable("key", items)
 
         val pItems = bundle.getParcelable<Items>("key")!!
 
-        assertTrue (pItems.users.size == 1)
+        assertTrue(pItems.users.size == 1)
         assertTrue(items.users.size == pItems.users.size)
 
         assertTrue(pItems.users[0].userId == 1)
@@ -36,12 +35,12 @@ class ItemsTest {
         assertTrue(pItems.users[0].profileImageUrl == "SomeUrl")
     }
 
-    private fun getFakeServerUser () : ServerUser {
+    private fun getFakeServerUser(): ServerUser {
         return ServerUser(
             1,
             "username",
             "rep",
-            ServerBadgeCounts(1,2,3),
+            ServerBadgeCounts(1, 2, 3),
             "A",
             "10",
             10,
