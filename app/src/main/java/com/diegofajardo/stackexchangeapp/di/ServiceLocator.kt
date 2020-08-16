@@ -1,10 +1,7 @@
 package com.diegofajardo.stackexchangeapp.di
 
-import com.diegofajardo.stackexchangeapp.App
+import android.app.Application
 import com.diegofajardo.stackexchangeapp.domain.User
-import com.diegofajardo.stackexchangeapp.ui.detail.DetailActivityViewModel
-import com.diegofajardo.stackexchangeapp.ui.main.MainActivityViewModel
-import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapterUiManagerImpl
 
 /**
  * Due to the size of the project I decided to use the Service Locator pattern instead of
@@ -14,30 +11,23 @@ import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapterUiManagerIm
  * */
 object ServiceLocator {
 
-    lateinit var app: App
+    lateinit var app: Application
         private set
 
-    fun init(app: App) {
+    lateinit var diComponentImpl: DIComponentImpl
+        private set
+
+    fun init(app: Application, DIComponentImpl: DIComponentImpl) {
         this.app = app
+        this.diComponentImpl = DIComponentImpl
     }
 
     ////
 
-    fun provideMainActivityViewModelFactory() = MainActivityViewModel.Factory(
-        app = app,
-        getUsersUsecase = UsecaseModule.usersUsecase,
-        schedulerProvider = RxModule.schedulerProvider,
-        errorMapper = UtilsModule.provideErrorMapper(app)
-    )
+    fun provideMainActivityViewModelFactory() = diComponentImpl.provideMainActivityViewModelFactory()
 
-    fun provideDetailActivityViewModelFactory(user: User) = DetailActivityViewModel.Factory(
-        app = app,
-        dateConverter = UtilsModule.provideDateConverter(),
-        user = user
-    )
+    fun provideDetailActivityViewModelFactory(user: User) = diComponentImpl.provideDetailActivityViewModelFactory(user)
 
-    fun provideUsersAdapterUiManagerImpl(): UsersAdapterUiManagerImpl {
-        return UiModule.provideUsersAdapterUiManagerImpl()
-    }
+    fun provideUsersAdapterUiManagerImpl() = diComponentImpl.provideUsersAdapterUiManagerImpl()
 
 }

@@ -22,10 +22,15 @@ ext {
     mockito_kotlin_version = '2.2.0'
     android_test_junit_version = '1.1.1'
     arch_core_testing_version = '2.1.0'
-    mock_web_server_version = '4.8.1'
     robolectric_version = '4.3.1'
-    android_test_espresso_version = '3.2.0'
 
     multidex_version = '2.0.1'
+
+    test_runner_version = '1.2.0'
+    espresso_contrib_version = '3.2.0'
+    espresso_intents_version = '3.0.2'
+    test_rules_version = '1.2.0'
+    junit_ktx_version = '1.1.1'
+    espresso_core_version = '3.0.2'
 
 }

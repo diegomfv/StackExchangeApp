@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.diegofajardo.stackexchangeapp.data.toDomainUser
-import com.diegofajardo.stackexchangeapp.testdi.TestServiceLocator
+import com.diegofajardo.stackexchangeapp.testdi.TestUsecaseModule
 import com.diegofajardo.stackexchangeapp.testutils.SchedulerProviderTrampoline
-import com.diegofajardo.stackexchangeapp.testutils.defaultFakeUsers
+import com.diegofajardo.stackexchangeapp.testutils.TestDefaultValues.defaultFakeUsers
 import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
 import com.diegofajardo.stackexchangeapp.utils.ErrorMapper
 import com.diegofajardo.stackexchangeapp.utils.SchedulerProviderImpl
@@ -25,7 +25,7 @@ class MainActivityViewModelIntegrationTest {
     val rule = InstantTaskExecutorRule()
 
     private val app: Application = mock()
-    private val getUsersUsecase: GetUsersUsecase = TestServiceLocator.provideFakeGetUsersUsecase()
+    private val getUsersUsecase: GetUsersUsecase = TestUsecaseModule.fakeGetUsersUsecase
     private val schedulerProvider: SchedulerProviderImpl = SchedulerProviderTrampoline()
     private val errorMapper: ErrorMapper = SimpleErrorMapper(app)
 

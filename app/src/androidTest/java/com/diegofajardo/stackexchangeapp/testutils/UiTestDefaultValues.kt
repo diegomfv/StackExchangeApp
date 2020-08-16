@@ -3,7 +3,7 @@ package com.diegofajardo.stackexchangeapp.testutils
 import com.diegofajardo.stackexchangeapp.data.source.server.model.ServerBadgeCounts
 import com.diegofajardo.stackexchangeapp.data.source.server.model.ServerUser
 
-object TestDefaultValues {
+object UiTestDefaultValues {
 
     val defaultFakeUsers = listOf<ServerUser>(
         ServerUser(1, "", "", ServerBadgeCounts(0, 1, 2), "", "", 1L, ""),
@@ -12,4 +12,3 @@ object TestDefaultValues {
     )
 
 }
-

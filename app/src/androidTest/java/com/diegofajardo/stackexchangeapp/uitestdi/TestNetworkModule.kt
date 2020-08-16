@@ -1,12 +1,11 @@
-package com.diegofajardo.stackexchangeapp.testdi
+package com.diegofajardo.stackexchangeapp.uitestdi
 
 import com.diegofajardo.stackexchangeapp.data.source.server.endpoint.StackExchangeServerEndpoints
 import com.diegofajardo.stackexchangeapp.data.source.server.model.Items
-import com.diegofajardo.stackexchangeapp.testutils.TestDefaultValues.defaultFakeUsers
+import com.diegofajardo.stackexchangeapp.testutils.UiTestDefaultValues
 import io.reactivex.Observable
 
 object TestNetworkModule {
-
     val fakeStackExchangeServerEndpoints: StackExchangeServerEndpoints by lazy { FakeStackExchangeServerEndpoints() }
 }
 
@@ -24,6 +23,6 @@ class FakeStackExchangeServerEndpoints : StackExchangeServerEndpoints {
         max: String?,
         sort: String
     ): Observable<Items> {
-        return Observable.just(Items(defaultFakeUsers))
+        return Observable.just(Items(UiTestDefaultValues.defaultFakeUsers))
     }
 }

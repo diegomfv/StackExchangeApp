@@ -82,7 +82,7 @@ class MainActivityViewModel(
     class Factory constructor(
         private val app: Application,
         private val getUsersUsecase: GetUsersUsecase,
-        private val schedulerProvider: SchedulerProvider,
+        private val schedulerProvider: SchedulerProviderImpl,
         private val errorMapper: ErrorMapper
     ) : ViewModelProvider.AndroidViewModelFactory(app) {
 
