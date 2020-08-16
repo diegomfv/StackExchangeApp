@@ -12,8 +12,9 @@ ext {
     retrofit_adapter_rxjava_version= '2.5.0'
     retrofit_gson_converter_version= '2.6.4' //in 2.7.0 is when they updated okHttpClient dependency to 3.14.0 making the app crash in Kitkat
     retrofit_logging_interceptor_version= '3.0.0'
-
     rx_android_version = '2.1.1'
+
+    glide_version = '4.11.0'
 
     junit_version = '4.13'
     mockito_inline_version = '3.1.0'

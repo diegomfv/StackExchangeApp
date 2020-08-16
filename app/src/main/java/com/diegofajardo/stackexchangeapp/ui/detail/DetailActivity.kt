@@ -8,6 +8,7 @@ import com.diegofajardo.stackexchangeapp.R
 import com.diegofajardo.stackexchangeapp.di.ServiceLocator
 import com.diegofajardo.stackexchangeapp.domain.User
 import com.diegofajardo.stackexchangeapp.ui.main.MainActivityViewModel
+import com.diegofajardo.stackexchangeapp.utils.loadUrl
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
@@ -39,7 +40,7 @@ class DetailActivity : AppCompatActivity() {
 
     //TODO Move to DetailActivityUiManager class
     private fun fillUi(user: User) {
-        //load image avatar
+        avatar?.loadUrl(user.profileImageUrl)
         username?.text = getString(R.string.username).plus(":").plus(user.username)
         reputation?.text = getString(R.string.reputation).plus(":").plus(user.reputation)
         badges_bronze?.text = getString(R.string.bronze_badges).plus(":").plus(user.badgeCounts.bronze.toString())
