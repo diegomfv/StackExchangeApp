@@ -32,6 +32,7 @@ object ServiceLocator {
 
     fun provideDetailActivityViewModelFactory(user: User) = DetailActivityViewModel.Factory(
         app = app,
+        dateConverter = UtilsModule.provideDateConverter(),
         user = user
     )
 

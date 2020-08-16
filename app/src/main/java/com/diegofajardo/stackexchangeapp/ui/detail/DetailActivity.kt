@@ -7,9 +7,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.diegofajardo.stackexchangeapp.R
 import com.diegofajardo.stackexchangeapp.di.ServiceLocator
+import com.diegofajardo.stackexchangeapp.domain.DetailUser
 import com.diegofajardo.stackexchangeapp.domain.User
 import com.diegofajardo.stackexchangeapp.utils.loadUrl
 import kotlinx.android.synthetic.main.activity_detail.*
+
 
 class DetailActivity : AppCompatActivity() {
 
@@ -37,26 +39,25 @@ class DetailActivity : AppCompatActivity() {
     private fun updateUi(model: DetailActivityViewModel.UiModel) {
         when (model) {
             is DetailActivityViewModel.UiModel.Content -> {
-                fillUi(model.user)
+                fillUi(model.detailUser)
             }
         }
     }
 
     //TODO Move to DetailActivityUiManager class
-    private fun fillUi(user: User) {
-        avatar?.loadUrl(user.profileImageUrl)
-        username?.text = getString(R.string.username).plus(":").plus(user.username)
-        reputation?.text = getString(R.string.reputation).plus(":").plus(user.reputation)
+    private fun fillUi(detailUser: DetailUser) {
+        avatar?.loadUrl(detailUser.profileImageUrl)
+        username?.text = getString(R.string.username).plus(": ").plus(detailUser.username)
+        reputation?.text = getString(R.string.reputation).plus(": ").plus(detailUser.reputation)
         badges_bronze?.text =
-            getString(R.string.bronze_badges).plus(":").plus(user.badgeCounts.bronze.toString())
+            getString(R.string.bronze_badges).plus(": ").plus(detailUser.bronzeBadges)
         badges_silver?.text =
-            getString(R.string.silver_badges).plus(":").plus(user.badgeCounts.silver.toString())
-        badges_gold?.text =
-            getString(R.string.gold_badges).plus(":").plus(user.badgeCounts.gold.toString())
-        location?.text = getString(R.string.location).plus(":").plus(user.location)
-        age?.text = getString(R.string.age).plus(":").plus(user.age)
+            getString(R.string.silver_badges).plus(": ").plus(detailUser.silverBadges)
+        badges_gold?.text = getString(R.string.gold_badges).plus(": ").plus(detailUser.goldBadges)
+        location?.text = getString(R.string.location).plus(": ").plus(detailUser.location)
+        age?.text = getString(R.string.age).plus(": ").plus(detailUser.age)
         creation_date?.text =
-            getString(R.string.creation_date).plus(":").plus(user.creationDate.toString())
+            getString(R.string.creation_date).plus(": ").plus(detailUser.creationDate)
     }
 
     private fun getUserFromIntent(): User? {

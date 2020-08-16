@@ -2,8 +2,13 @@ package com.diegofajardo.stackexchangeapp.data
 
 import com.diegofajardo.stackexchangeapp.data.source.server.model.ServerBadgeCounts
 import com.diegofajardo.stackexchangeapp.data.source.server.model.ServerUser
+import com.diegofajardo.stackexchangeapp.domain.BadgeCounts
+import com.diegofajardo.stackexchangeapp.domain.User
+import com.diegofajardo.stackexchangeapp.utils.SimpleDateConverter
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MappersTest {
 
@@ -43,5 +48,32 @@ class MappersTest {
         assertTrue(badgeCounts.bronze == 0)
         assertTrue(badgeCounts.silver == 1)
         assertTrue(badgeCounts.gold == 2)
+    }
+
+    @Test
+    fun toDetailUser() {
+        val user = User(
+            1,
+            "username",
+            "reputation",
+            BadgeCounts(0, 1, 2),
+            "loc",
+            "age",
+            1L,
+            "someUrl"
+        )
+
+        val dateConverter = SimpleDateConverter(SimpleDateFormat("dd-mm-yyyy", Locale.getDefault()))
+        val detailUser = user.toDetailUser(dateConverter)
+
+        assertTrue(detailUser.username == "username")
+        assertTrue(detailUser.reputation == "reputation")
+        assertTrue(detailUser.bronzeBadges == "0")
+        assertTrue(detailUser.silverBadges == "1")
+        assertTrue(detailUser.goldBadges == "2")
+        assertTrue(detailUser.location == "loc")
+        assertTrue(detailUser.age == "age")
+        assertTrue(detailUser.creationDate == dateConverter.getDateAsString(1L))
+        assertTrue(detailUser.profileImageUrl == "someUrl")
     }
 }

@@ -3,8 +3,11 @@ package com.diegofajardo.stackexchangeapp.ui.detail
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.diegofajardo.stackexchangeapp.data.toDetailUser
+import com.diegofajardo.stackexchangeapp.di.UtilsModule
 import com.diegofajardo.stackexchangeapp.domain.BadgeCounts
 import com.diegofajardo.stackexchangeapp.domain.User
+import com.diegofajardo.stackexchangeapp.utils.StackExchangeDateConverter
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
@@ -24,6 +27,7 @@ class DetailActivityViewModelTest {
     @Mock
     lateinit var app: Application
 
+    private val dateConverter: StackExchangeDateConverter = UtilsModule.provideDateConverter()
     private val user: User = getFakeUser()
 
     private lateinit var detailActivityViewModel: DetailActivityViewModel
@@ -32,7 +36,7 @@ class DetailActivityViewModelTest {
 
     @Before
     fun setUp() {
-        detailActivityViewModel = DetailActivityViewModel(app, user)
+        detailActivityViewModel = DetailActivityViewModel(app, dateConverter, user)
     }
 
     @Test
@@ -40,7 +44,7 @@ class DetailActivityViewModelTest {
         detailActivityViewModel.model.observeForever(observer)
 
         verify(observer, times(1))
-            .onChanged(DetailActivityViewModel.UiModel.Content(user))
+            .onChanged(DetailActivityViewModel.UiModel.Content(user.toDetailUser(dateConverter)))
 
     }
 
