@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
@@ -18,6 +19,11 @@ inline fun <reified T : Activity> Context.intentFor(body: Intent.() -> Unit): In
 
 inline fun <reified T : Activity> Context.startActivity(body: Intent.() -> Unit) {
     startActivity(intentFor<T>(body))
+}
+
+fun Activity.hideKeyboard(): Boolean {
+    return (getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
+        .hideSoftInputFromWindow((currentFocus ?: View(this)).windowToken, 0)
 }
 
 fun ImageView.loadUrl(url: String) {

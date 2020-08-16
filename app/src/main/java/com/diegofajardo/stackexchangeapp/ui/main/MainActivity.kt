@@ -11,6 +11,7 @@ import com.diegofajardo.stackexchangeapp.di.ServiceLocator
 import com.diegofajardo.stackexchangeapp.domain.User
 import com.diegofajardo.stackexchangeapp.ui.detail.DetailActivity
 import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapter
+import com.diegofajardo.stackexchangeapp.utils.hideKeyboard
 import com.diegofajardo.stackexchangeapp.utils.startActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             lastClickTime = SystemClock.elapsedRealtime()
+            hideKeyboard()
             mainActivityViewModel.getUsers(search_input?.text.toString())
         }
     }
