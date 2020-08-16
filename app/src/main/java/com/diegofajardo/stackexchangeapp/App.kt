@@ -1,10 +1,11 @@
 package com.diegofajardo.stackexchangeapp
 
-import android.app.Application
+import androidx.multidex.BuildConfig
+import androidx.multidex.MultiDexApplication
 import com.diegofajardo.stackexchangeapp.di.ServiceLocator
 import timber.log.Timber
 
-class App: Application() {
+class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()

@@ -1,16 +1,18 @@
 package com.diegofajardo.stackexchangeapp.data.source.server
 
 import com.diegofajardo.stackexchangeapp.data.model.QueryModel
+import com.diegofajardo.stackexchangeapp.data.source.server.adapter.GetUsersQueryAdapter
+import com.diegofajardo.stackexchangeapp.data.toDomainUser
 import com.diegofajardo.stackexchangeapp.domain.User
 import io.reactivex.Observable
 
-class StackExchangeRemoteDataSource : RemoteDataSource {
+class StackExchangeRemoteDataSource(
+    private val getUsersQueryAdapter: GetUsersQueryAdapter
+) : RemoteDataSource {
 
-    override fun getUsers(query: QueryModel): Observable<User> {
-        return Observable.fromIterable(listOf<User>(
-            User("username1","111"),
-            User("username2","222"),
-            User("username3","333")
-        ))
+    override fun getUsers(queryModel: QueryModel): Observable<User> {
+        return getUsersQueryAdapter.getUsers(queryModel)
+            .flatMapIterable { it.users }
+            .map { it.toDomainUser() }
     }
 }

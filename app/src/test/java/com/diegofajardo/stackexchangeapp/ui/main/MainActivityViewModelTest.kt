@@ -3,6 +3,7 @@ package com.diegofajardo.stackexchangeapp.ui.main
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.diegofajardo.stackexchangeapp.domain.BadgeCounts
 import com.diegofajardo.stackexchangeapp.domain.User
 import com.diegofajardo.stackexchangeapp.testutils.SchedulerProviderTrampoline
 import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
@@ -38,7 +39,8 @@ class MainActivityViewModelTest {
 
     @Before
     fun setUp() {
-        mainActivityViewModel = MainActivityViewModel(app, getUsersUsecase, schedulerProvider, errorMapper)
+        mainActivityViewModel =
+            MainActivityViewModel(app, getUsersUsecase, schedulerProvider, errorMapper)
     }
 
     //TODO Add check for the argument (instead of any) when the way to extract the queryModel is updated
@@ -61,13 +63,16 @@ class MainActivityViewModelTest {
 
     @Test
     fun `getUsers when called and getUsersUsecase_invoke returns at least one item model is updated with Content(items)`() {
-        val user = User("", "")
+        val user = getFakeUser()
         whenever(getUsersUsecase.invoke(any())).doReturn(Observable.fromIterable(listOf(user)))
         mainActivityViewModel.model.observeForever(observer)
 
         runBlocking {
             mainActivityViewModel.getUsers("some query")
-            verify(observer, times(1)).onChanged(MainActivityViewModel.UiModel.Content(listOf(user)))
+            verify(
+                observer,
+                times(1)
+            ).onChanged(MainActivityViewModel.UiModel.Content(listOf(user)))
         }
     }
 
@@ -103,23 +108,42 @@ class MainActivityViewModelTest {
 
         runBlocking {
             mainActivityViewModel.getUsers("some query")
-            verify(observer, times(1)).onChanged(MainActivityViewModel.UiModel.Error("Error message not available"))
+            verify(
+                observer,
+                times(1)
+            ).onChanged(MainActivityViewModel.UiModel.Error("Error message not available"))
         }
     }
 
     @Test
     fun `onUserClicked when called event is updated with Navigation(user)`() {
-        val user = User("username", "123")
+        val user = getFakeUser()
         mainActivityViewModel.onUserClicked(user)
         mainActivityViewModel.event.observeForever(eventObserver)
-        verify(eventObserver, times(1)).onChanged(ArgumentMatchers.refEq(Event(MainActivityViewModel.EventModel.Navigation(user))))
+        verify(
+            eventObserver,
+            times(1)
+        ).onChanged(ArgumentMatchers.refEq(Event(MainActivityViewModel.EventModel.Navigation(user))))
     }
 
     private fun getListFakeUsers(): List<User> {
         return listOf<User>(
-            User("username1", "111"),
-            User("username2", "222"),
-            User("username3", "333")
+            getFakeUser(username = "username1"),
+            getFakeUser(username = "username2"),
+            getFakeUser(username = "username3")
+        )
+    }
+
+    private fun getFakeUser(username: String = "username"): User {
+        return User(
+            1,
+            "username",
+            "reputation",
+            BadgeCounts(1, 2, 3),
+            "location",
+            "10",
+            1,
+            "someUrl"
         )
     }
 

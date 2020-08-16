@@ -1,7 +1,6 @@
-package com.diegofajardo.stackexchangeapp.data
+package com.diegofajardo.stackexchangeapp.data.repository
 
-import com.diegofajardo.stackexchangeapp.data.model.QueryModel
-import com.diegofajardo.stackexchangeapp.data.repository.UserRepository
+import com.diegofajardo.stackexchangeapp.data.model.OnlyInnameQueryModel
 import com.diegofajardo.stackexchangeapp.data.source.server.RemoteDataSource
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.times
@@ -24,8 +23,8 @@ class UserRepositoryTest {
     lateinit var userRepository: UserRepository
 
     @Test
-    fun getUsers_whenCalled_remoteDataSource_getUsers_isCalled_with_same_queryModel () {
-        val queryModel = QueryModel("some value")
+    fun getUsers_whenCalled_remoteDataSource_getUsers_isCalled_with_same_queryModel() {
+        val queryModel = OnlyInnameQueryModel("some value")
         whenever(remoteDataSource.getUsers(queryModel)).doReturn(Observable.empty())
         userRepository.getUsers(queryModel).blockingSubscribe()
         verify(remoteDataSource, times(1)).getUsers(queryModel)

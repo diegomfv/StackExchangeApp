@@ -5,5 +5,5 @@ import com.diegofajardo.stackexchangeapp.domain.User
 import io.reactivex.Observable
 
 interface RemoteDataSource {
-    fun getUsers (query: QueryModel) : Observable<User>
+    fun getUsers(queryModel: QueryModel): Observable<User>
 }

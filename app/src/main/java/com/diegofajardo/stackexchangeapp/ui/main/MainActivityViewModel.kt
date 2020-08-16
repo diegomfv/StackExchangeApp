@@ -3,7 +3,7 @@ package com.diegofajardo.stackexchangeapp.ui.main
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.*
-import com.diegofajardo.stackexchangeapp.data.model.QueryModel
+import com.diegofajardo.stackexchangeapp.data.model.OnlyInnameQueryModel
 import com.diegofajardo.stackexchangeapp.domain.User
 import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
 import com.diegofajardo.stackexchangeapp.utils.ErrorMapper
@@ -13,7 +13,7 @@ import com.diegofajardo.stackexchangeapp.utils.SchedulerProviderImpl
 import io.reactivex.disposables.CompositeDisposable
 
 
-class MainActivityViewModel (
+class MainActivityViewModel(
     private val app: Application,
     private val getUsersUsecase: GetUsersUsecase,
     private val schedulerProvider: SchedulerProviderImpl,
@@ -26,7 +26,7 @@ class MainActivityViewModel (
         object Loading : UiModel()
         data class Content(val users: List<User>) : UiModel()
         object EmptyContent : UiModel()
-        data class Error(val errorMessage : String) : UiModel()
+        data class Error(val errorMessage: String) : UiModel()
     }
 
     sealed class EventModel {
@@ -43,7 +43,8 @@ class MainActivityViewModel (
 
     @SuppressLint("CheckResult")
     fun getUsers(query: String) {
-        val queryModel = QueryModel(query) //use a queryBuilder in the future after implementing networking  //TODO
+        val queryModel =
+            OnlyInnameQueryModel(query) //use a queryBuilder in the future after implementing networking  //TODO
         getUsersUsecase.invoke(queryModel = queryModel)
             .subscribeOn(schedulerProvider.ioScheduler)
             .toList()
@@ -72,7 +73,7 @@ class MainActivityViewModel (
             )
     }
 
-    fun onUserClicked (user: User) {
+    fun onUserClicked(user: User) {
         event.value = Event(EventModel.Navigation(user))
     }
 
@@ -93,7 +94,8 @@ class MainActivityViewModel (
                 app = app,
                 getUsersUsecase = getUsersUsecase,
                 schedulerProvider = schedulerProvider,
-                errorMapper = errorMapper) as T
+                errorMapper = errorMapper
+            ) as T
         }
     }
 }
