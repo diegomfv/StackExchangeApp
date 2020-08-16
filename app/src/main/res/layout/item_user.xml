@@ -17,7 +17,6 @@
         app:layout_constraintEnd_toEndOf="@id/guideline"
 
         android:hint="@string/hint_users_adapter_reputation"
-        android:textColor="@android:color/background_light"
         android:textStyle="bold"
         />
 
@@ -32,7 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         android:hint="@string/hint_users_adapter_username"
-        android:textColor="@android:color/background_light"
         android:textStyle="bold"
         />
 
