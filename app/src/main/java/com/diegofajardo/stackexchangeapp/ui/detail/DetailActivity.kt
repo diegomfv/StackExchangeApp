@@ -41,13 +41,13 @@ class DetailActivity : AppCompatActivity() {
     private fun fillUi(user: User) {
         //load image avatar
         username?.text = getString(R.string.username).plus(":").plus(user.username)
-        reputation?.text = getString(R.string.username).plus(":").plus(user.reputation)
-        badges_bronze?.text = getString(R.string.username).plus(":").plus(user.badgeCounts.bronze.toString())
-        badges_silver?.text = getString(R.string.username).plus(":").plus(user.badgeCounts.silver.toString())
-        badges_gold?.text = getString(R.string.username).plus(":").plus(user.badgeCounts.gold.toString())
-        location?.text = getString(R.string.username).plus(":").plus(user.location)
-        age?.text = getString(R.string.username).plus(":").plus(user.age)
-        creation_date?.text = getString(R.string.username).plus(":").plus(user.creationDate.toString())
+        reputation?.text = getString(R.string.reputation).plus(":").plus(user.reputation)
+        badges_bronze?.text = getString(R.string.bronze_badges).plus(":").plus(user.badgeCounts.bronze.toString())
+        badges_silver?.text = getString(R.string.silver_badges).plus(":").plus(user.badgeCounts.silver.toString())
+        badges_gold?.text = getString(R.string.gold_badges).plus(":").plus(user.badgeCounts.gold.toString())
+        location?.text = getString(R.string.location).plus(":").plus(user.location)
+        age?.text = getString(R.string.age).plus(":").plus(user.age)
+        creation_date?.text = getString(R.string.creation_date).plus(":").plus(user.creationDate.toString())
     }
 
     private fun getUserFromIntent () : User? {
