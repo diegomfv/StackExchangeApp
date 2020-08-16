@@ -20,5 +20,7 @@
     <string name="location">location</string>
     <string name="age">age</string>
     <string name="creation_date">creation date</string>
+    <string name="user">User</string>
+    <string name="StackExchangeApp">StackExchangeApp</string>
 
 </resources>
