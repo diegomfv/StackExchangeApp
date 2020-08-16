@@ -9,7 +9,9 @@ class App: Application() {
     override fun onCreate() {
         super.onCreate()
         ServiceLocator.init(this)
-        if (BuildConfig.DEBUG) { Timber.plant(Timber.DebugTree()) }
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 
 }

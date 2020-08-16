@@ -45,7 +45,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$androidx_lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_lifecycle_version"
 
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_adapter_rxjava_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_gson_converter_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$retrofit_logging_interceptor_version"
@@ -55,6 +54,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber_version"
 
     implementation "androidx.multidex:multidex:$multidex_version"
+    implementation "com.android.support:multidex:$multidex_version"
 
     testImplementation "junit:junit:$junit_version"
 
@@ -63,5 +63,6 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$mockito_inline_version"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
     testImplementation "androidx.arch.core:core-testing:$arch_core_testing_version"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mock_web_server_version"
     testImplementation "org.robolectric:robolectric:$robolectric_version"
 }
