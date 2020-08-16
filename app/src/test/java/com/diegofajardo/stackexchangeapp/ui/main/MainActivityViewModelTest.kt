@@ -39,8 +39,7 @@ class MainActivityViewModelTest {
 
     @Before
     fun setUp() {
-        mainActivityViewModel =
-            MainActivityViewModel(app, getUsersUsecase, schedulerProvider, errorMapper)
+        mainActivityViewModel = MainActivityViewModel(app, getUsersUsecase, schedulerProvider, errorMapper)
     }
 
     //TODO Add check for the argument (instead of any) when the way to extract the queryModel is updated
