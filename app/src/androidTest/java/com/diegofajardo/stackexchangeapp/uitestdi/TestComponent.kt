@@ -11,7 +11,7 @@ import com.diegofajardo.stackexchangeapp.ui.main.MainActivityViewModel
 import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapterUiManagerImpl
 import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
 
-class TestComponent (private val app: Application) : DIComponentImpl {
+class TestComponent(private val app: Application) : DIComponentImpl {
 
     private fun provideFakeGetUsersUsecase(): GetUsersUsecase {
         return UiTestUsecaseModule.fakeGetUsersUsecase
@@ -26,11 +26,12 @@ class TestComponent (private val app: Application) : DIComponentImpl {
         )
     )
 
-    override fun provideDetailActivityViewModelFactory(user: User) = DetailActivityViewModel.Factory(
-        app = app,
-        dateConverter = UtilsModule.provideDateConverter(),
-        user = user
-    )
+    override fun provideDetailActivityViewModelFactory(user: User) =
+        DetailActivityViewModel.Factory(
+            app = app,
+            dateConverter = UtilsModule.provideDateConverter(),
+            user = user
+        )
 
     override fun provideUsersAdapterUiManagerImpl(): UsersAdapterUiManagerImpl {
         return UiModule.provideUsersAdapterUiManagerImpl()

@@ -44,62 +44,113 @@ class DetailActivityUiTest {
     fun username_is_displayed() {
         activityTestRule.launchActivity(intent)
         onView(ViewMatchers.withId(R.id.username)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(ViewMatchers.withId(R.id.username)).check(ViewAssertions.matches(ViewMatchers.withSubstring("username")))
+        onView(ViewMatchers.withId(R.id.username)).check(
+            ViewAssertions.matches(
+                ViewMatchers.withSubstring(
+                    "username"
+                )
+            )
+        )
     }
 
     @Test
     fun reputation_is_displayed() {
         activityTestRule.launchActivity(intent)
         onView(ViewMatchers.withId(R.id.reputation)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(ViewMatchers.withId(R.id.reputation)).check(ViewAssertions.matches(ViewMatchers.withSubstring("reputation")))
+        onView(ViewMatchers.withId(R.id.reputation)).check(
+            ViewAssertions.matches(
+                ViewMatchers.withSubstring(
+                    "reputation"
+                )
+            )
+        )
     }
 
     @Test
     fun bronze_badges_is_displayed() {
         activityTestRule.launchActivity(intent)
         onView(ViewMatchers.withId(R.id.badges_bronze)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(ViewMatchers.withId(R.id.badges_bronze)).check(ViewAssertions.matches(ViewMatchers.withSubstring("1")))
+        onView(ViewMatchers.withId(R.id.badges_bronze)).check(
+            ViewAssertions.matches(
+                ViewMatchers.withSubstring(
+                    "1"
+                )
+            )
+        )
     }
 
     @Test
     fun silver_badges_is_displayed() {
         activityTestRule.launchActivity(intent)
         onView(ViewMatchers.withId(R.id.badges_silver)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(ViewMatchers.withId(R.id.badges_silver)).check(ViewAssertions.matches(ViewMatchers.withSubstring("2")))
+        onView(ViewMatchers.withId(R.id.badges_silver)).check(
+            ViewAssertions.matches(
+                ViewMatchers.withSubstring(
+                    "2"
+                )
+            )
+        )
     }
 
     @Test
     fun gold_badges_is_displayed() {
         activityTestRule.launchActivity(intent)
         onView(ViewMatchers.withId(R.id.badges_gold)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(ViewMatchers.withId(R.id.badges_gold)).check(ViewAssertions.matches(ViewMatchers.withSubstring("3")))
+        onView(ViewMatchers.withId(R.id.badges_gold)).check(
+            ViewAssertions.matches(
+                ViewMatchers.withSubstring(
+                    "3"
+                )
+            )
+        )
     }
 
     @Test
     fun location_is_displayed() {
         activityTestRule.launchActivity(intent)
         onView(ViewMatchers.withId(R.id.location)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(ViewMatchers.withId(R.id.location)).check(ViewAssertions.matches(ViewMatchers.withSubstring("location")))
+        onView(ViewMatchers.withId(R.id.location)).check(
+            ViewAssertions.matches(
+                ViewMatchers.withSubstring(
+                    "location"
+                )
+            )
+        )
     }
 
     @Test
     fun age_is_displayed() {
         activityTestRule.launchActivity(intent)
         onView(ViewMatchers.withId(R.id.age)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(ViewMatchers.withId(R.id.age)).check(ViewAssertions.matches(ViewMatchers.withSubstring("10")))
+        onView(ViewMatchers.withId(R.id.age)).check(
+            ViewAssertions.matches(
+                ViewMatchers.withSubstring(
+                    "10"
+                )
+            )
+        )
     }
 
     @Test
     fun creation_date_is_displayed() {
         activityTestRule.launchActivity(intent)
         val datePattern = "dd-mm-yyyy"
-        val displayedDate = SimpleDateConverter(SimpleDateFormat(datePattern, Locale.getDefault())).getDateAsString(user.creationDate)
+        val displayedDate =
+            SimpleDateConverter(SimpleDateFormat(datePattern, Locale.getDefault())).getDateAsString(
+                user.creationDate
+            )
         onView(ViewMatchers.withId(R.id.creation_date)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(ViewMatchers.withId(R.id.creation_date)).check(ViewAssertions.matches(ViewMatchers.withSubstring(displayedDate)))
+        onView(ViewMatchers.withId(R.id.creation_date)).check(
+            ViewAssertions.matches(
+                ViewMatchers.withSubstring(
+                    displayedDate
+                )
+            )
+        )
     }
 
     @Test
-    fun on_back_pressed_kills_activity () {
+    fun on_back_pressed_kills_activity() {
         activityTestRule.launchActivity(intent)
         Espresso.pressBackUnconditionally()
         assertTrue(activityTestRule.activity.isDestroyed)

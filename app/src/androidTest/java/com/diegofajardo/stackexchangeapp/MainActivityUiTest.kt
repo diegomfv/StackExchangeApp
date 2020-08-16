@@ -36,7 +36,12 @@ class MainActivityUiTest {
     fun click_item_in_recycler_view_launches_DetailActivity() {
         activityTestRule.launchActivity(null)
         onView(withId(R.id.submit_query_button)).perform(click())
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.recycler_view)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
         intended(hasComponent(DetailActivity::class.java.name))
     }
 }

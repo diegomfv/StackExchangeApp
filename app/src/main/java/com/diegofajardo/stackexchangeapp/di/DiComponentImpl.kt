@@ -9,7 +9,7 @@ import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapterUiManagerIm
  * Abstracting the components we can run a test component for ui tests.
  * */
 interface DIComponentImpl {
-    fun provideMainActivityViewModelFactory() : MainActivityViewModel.Factory
-    fun provideDetailActivityViewModelFactory(user: User) :  DetailActivityViewModel.Factory
+    fun provideMainActivityViewModelFactory(): MainActivityViewModel.Factory
+    fun provideDetailActivityViewModelFactory(user: User): DetailActivityViewModel.Factory
     fun provideUsersAdapterUiManagerImpl(): UsersAdapterUiManagerImpl
 }

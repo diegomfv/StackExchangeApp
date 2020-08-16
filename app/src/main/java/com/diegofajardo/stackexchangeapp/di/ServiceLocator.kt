@@ -24,9 +24,11 @@ object ServiceLocator {
 
     ////
 
-    fun provideMainActivityViewModelFactory() = diComponentImpl.provideMainActivityViewModelFactory()
+    fun provideMainActivityViewModelFactory() =
+        diComponentImpl.provideMainActivityViewModelFactory()
 
-    fun provideDetailActivityViewModelFactory(user: User) = diComponentImpl.provideDetailActivityViewModelFactory(user)
+    fun provideDetailActivityViewModelFactory(user: User) =
+        diComponentImpl.provideDetailActivityViewModelFactory(user)
 
     fun provideUsersAdapterUiManagerImpl() = diComponentImpl.provideUsersAdapterUiManagerImpl()
 
