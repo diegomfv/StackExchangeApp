@@ -12,15 +12,17 @@
     <string name="error_message_not_available">Error message not available</string>
     <string name="content_description_user_avatar">User avatar</string>
 
-    <string name="username">username</string>
-    <string name="reputation">reputation</string>
-    <string name="bronze_badges">bronze badges</string>
-    <string name="silver_badges">silver badges</string>
-    <string name="gold_badges">gold badges</string>
-    <string name="location">location</string>
-    <string name="age">age</string>
-    <string name="creation_date">creation date</string>
+    <string name="username">Username</string>
+    <string name="reputation">Reputation</string>
+    <string name="bronze_badges">Bronze badges</string>
+    <string name="silver_badges">Silver badges</string>
+    <string name="gold_badges">Gold badges</string>
+    <string name="location">Location</string>
+    <string name="age">Age</string>
+    <string name="creation_date">Creation date</string>
+
     <string name="user">User</string>
+
     <string name="StackExchangeApp">StackExchangeApp</string>
 
 </resources>
