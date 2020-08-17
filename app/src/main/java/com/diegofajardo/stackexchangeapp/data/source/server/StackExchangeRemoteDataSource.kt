@@ -17,7 +17,9 @@ class StackExchangeRemoteDataSource(
     }
 
     /* If the mapping operation to domain model was very expensive we could use parallelization
-     * and swap to a computational scheduler.
+     * and swap to a computational scheduler. For the amount of data used by the app there won't
+     * be any problem with backpressure but with parallelization using 'Flowable' is the right
+     * decision because it deals automatically with backpressure
      * */
 //    override fun getUsers(queryModel: QueryModel): Observable<User> {
 //        return getUsersQueryAdapter.getUsers(queryModel)
