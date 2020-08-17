@@ -36,7 +36,13 @@ class MainActivityViewModelIntegrationTest {
     @Before
     fun setUp() {
         mainActivityViewModel =
-            MainActivityViewModel(app, getUsersUsecase, queryBuilder, schedulerProvider, errorMapper)
+            MainActivityViewModel(
+                app,
+                getUsersUsecase,
+                queryBuilder,
+                schedulerProvider,
+                errorMapper
+            )
     }
 
     @Test

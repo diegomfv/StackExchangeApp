@@ -2,8 +2,6 @@ package com.diegofajardo.stackexchangeapp.di
 
 import android.app.Application
 import com.diegofajardo.stackexchangeapp.utils.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 object UtilsModule {
 
