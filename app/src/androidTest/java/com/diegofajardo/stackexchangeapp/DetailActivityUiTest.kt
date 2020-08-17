@@ -134,11 +134,7 @@ class DetailActivityUiTest {
     @Test
     fun creation_date_is_displayed() {
         activityTestRule.launchActivity(intent)
-        val datePattern = "dd-mm-yyyy"
-        val displayedDate =
-            SimpleDateConverter(SimpleDateFormat(datePattern, Locale.getDefault())).getDateAsString(
-                user.creationDate
-            )
+        val displayedDate = SimpleDateConverter().getDateAsString(user.creationDate)
         onView(ViewMatchers.withId(R.id.creation_date)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         onView(ViewMatchers.withId(R.id.creation_date)).check(
             ViewAssertions.matches(

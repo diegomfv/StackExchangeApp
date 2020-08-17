@@ -12,8 +12,7 @@ object UtilsModule {
     }
 
     fun provideDateConverter(): StackExchangeDateConverter {
-        val datePattern = "dd-mm-yyyy"
-        return SimpleDateConverter(SimpleDateFormat(datePattern, Locale.getDefault()))
+        return SimpleDateConverter()
     }
 
     fun provideOnlyInnameQueryBuilder(): QueryBuilder {

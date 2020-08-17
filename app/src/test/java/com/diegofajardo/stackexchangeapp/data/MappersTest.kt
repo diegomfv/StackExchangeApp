@@ -63,7 +63,7 @@ class MappersTest {
             "someUrl"
         )
 
-        val dateConverter = SimpleDateConverter(SimpleDateFormat("dd-mm-yyyy", Locale.getDefault()))
+        val dateConverter = SimpleDateConverter()
         val detailUser = user.toDetailUser(dateConverter)
 
         assertTrue(detailUser.username == "username")
