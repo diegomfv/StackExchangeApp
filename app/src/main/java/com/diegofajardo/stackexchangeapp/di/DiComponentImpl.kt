@@ -6,7 +6,8 @@ import com.diegofajardo.stackexchangeapp.ui.main.MainActivityViewModel
 import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapterUiManagerImpl
 
 /** Interface for the components that the service locator will use to inject dependencies.
- * Abstracting the components we can run a test component for ui tests.
+ * Abstracting the components we can use a test component in the test application
+ * for running ui tests.
  * */
 interface DIComponentImpl {
     fun provideMainActivityViewModelFactory(): MainActivityViewModel.Factory

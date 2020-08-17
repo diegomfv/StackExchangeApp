@@ -1,4 +1,4 @@
-package com.diegofajardo.stackexchangeapp.utils
+package com.diegofajardo.stackexchangeapp.extensions
 
 import android.app.Activity
 import android.content.Context

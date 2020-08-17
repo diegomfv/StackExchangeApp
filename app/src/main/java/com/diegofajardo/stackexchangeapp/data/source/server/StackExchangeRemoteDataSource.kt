@@ -15,4 +15,16 @@ class StackExchangeRemoteDataSource(
             .flatMapIterable { it.users }
             .map { it.toDomainUser() }
     }
+
+    /* If the mapping operation to domain model was very expensive we could use parallelization
+     * and swap to a computational scheduler.
+     * */
+//    override fun getUsers(queryModel: QueryModel): Observable<User> {
+//        return getUsersQueryAdapter.getUsers(queryModel)
+//            .flatMap {
+//                Observable.fromIterable(it.users)
+//                    .subscribeOn(Schedulers.computation())
+//                    .map { it.toDomainUser() }
+//            }
+//    }
 }

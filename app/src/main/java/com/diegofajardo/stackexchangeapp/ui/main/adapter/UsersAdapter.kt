@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.diegofajardo.stackexchangeapp.R
 import com.diegofajardo.stackexchangeapp.domain.User
-import com.diegofajardo.stackexchangeapp.utils.basicDiffUtil
-import com.diegofajardo.stackexchangeapp.utils.inflate
+import com.diegofajardo.stackexchangeapp.extensions.basicDiffUtil
+import com.diegofajardo.stackexchangeapp.extensions.inflate
 import kotlinx.android.synthetic.main.item_user.view.*
 
 class UsersAdapter(

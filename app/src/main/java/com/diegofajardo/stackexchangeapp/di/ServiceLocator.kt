@@ -4,10 +4,10 @@ import android.app.Application
 import com.diegofajardo.stackexchangeapp.domain.User
 
 /**
- * Due to the size of the project I decided to use the Service Locator pattern instead of
+ * Due to the size of the project the Service Locator pattern is used instead of
  * a dependency injection tool like Dagger.
- * Allows to do assisted injection in an easy way.
- * See method 'provideDetailActivityViewModelFactory'.
+ * It uses an abstraction of components (@property DIComponentImpl) so that different
+ * modules can be used in different applications.
  * */
 object ServiceLocator {
 
@@ -27,6 +27,7 @@ object ServiceLocator {
     fun provideMainActivityViewModelFactory() =
         diComponentImpl.provideMainActivityViewModelFactory()
 
+    /* This pattern allows to do assisted injection in an easy way */
     fun provideDetailActivityViewModelFactory(user: User) =
         diComponentImpl.provideDetailActivityViewModelFactory(user)
 

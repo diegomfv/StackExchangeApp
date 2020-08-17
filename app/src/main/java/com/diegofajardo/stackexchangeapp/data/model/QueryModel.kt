@@ -15,6 +15,9 @@ interface QueryModel {
     val sort: String
 }
 
+/**
+ * A query model that is built only using username data and default values.
+ * */
 class OnlyInnameQueryModel(
     containsUsername: String
 ) : QueryModel {
