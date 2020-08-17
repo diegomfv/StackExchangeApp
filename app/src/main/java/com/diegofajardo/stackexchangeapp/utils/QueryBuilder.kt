@@ -4,7 +4,7 @@ import com.diegofajardo.stackexchangeapp.data.model.OnlyInnameQueryModel
 import com.diegofajardo.stackexchangeapp.data.model.QueryModel
 
 interface QueryBuilder {
-    fun buildQueryModel (input: String) : QueryModel
+    fun buildQueryModel(input: String): QueryModel
 }
 
 class OnlyInnameQueryBuilder : QueryBuilder {

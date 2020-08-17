@@ -1,7 +1,6 @@
 package com.diegofajardo.stackexchangeapp.utils
 
 import com.diegofajardo.stackexchangeapp.data.model.OnlyInnameQueryModel
-import com.diegofajardo.stackexchangeapp.data.model.QueryModel
 import org.junit.Assert.assertTrue
 import org.junit.Test
 

@@ -6,6 +6,9 @@ import com.diegofajardo.stackexchangeapp.ui.detail.DetailActivityViewModel
 import com.diegofajardo.stackexchangeapp.ui.main.MainActivityViewModel
 import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapterUiManagerImpl
 
+/**
+ * Component used in production.
+ * */
 class ProductionComponent(private val app: Application) : DIComponentImpl {
 
     override fun provideMainActivityViewModelFactory() = MainActivityViewModel.Factory(

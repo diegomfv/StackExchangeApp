@@ -9,7 +9,7 @@ import com.diegofajardo.stackexchangeapp.R
 import com.diegofajardo.stackexchangeapp.di.ServiceLocator
 import com.diegofajardo.stackexchangeapp.domain.DetailUser
 import com.diegofajardo.stackexchangeapp.domain.User
-import com.diegofajardo.stackexchangeapp.utils.loadUrl
+import com.diegofajardo.stackexchangeapp.extensions.loadUrl
 import kotlinx.android.synthetic.main.activity_detail.*
 
 

@@ -7,8 +7,6 @@ import com.diegofajardo.stackexchangeapp.domain.User
 import com.diegofajardo.stackexchangeapp.utils.SimpleDateConverter
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MappersTest {
 
