@@ -3,6 +3,7 @@ package com.diegofajardo.stackexchangeapp
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.intent.Intents.intended
@@ -35,10 +36,11 @@ class MainActivityUiTest {
     @Test
     fun click_item_in_recycler_view_launches_DetailActivity() {
         activityTestRule.launchActivity(null)
+        onView(withId(R.id.search_input)).perform(typeText("alpha"))
         onView(withId(R.id.submit_query_button)).perform(click())
         onView(withId(R.id.recycler_view)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
-                0,
+                1,
                 click()
             )
         )

@@ -3,11 +3,12 @@ package com.diegofajardo.stackexchangeapp.ui.main
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.*
-import com.diegofajardo.stackexchangeapp.data.model.OnlyInnameQueryModel
+import com.diegofajardo.stackexchangeapp.data.model.QueryModel
 import com.diegofajardo.stackexchangeapp.domain.User
 import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
 import com.diegofajardo.stackexchangeapp.utils.ErrorMapper
 import com.diegofajardo.stackexchangeapp.utils.Event
+import com.diegofajardo.stackexchangeapp.utils.QueryBuilder
 import com.diegofajardo.stackexchangeapp.utils.SchedulerProviderImpl
 import io.reactivex.disposables.CompositeDisposable
 
@@ -15,6 +16,7 @@ import io.reactivex.disposables.CompositeDisposable
 class MainActivityViewModel(
     private val app: Application,
     private val getUsersUsecase: GetUsersUsecase,
+    private val queryBuilder: QueryBuilder,
     private val schedulerProvider: SchedulerProviderImpl,
     private val errorMapper: ErrorMapper
 ) : AndroidViewModel(app) {
@@ -41,9 +43,7 @@ class MainActivityViewModel(
     val event = MutableLiveData<Event<EventModel>>()
 
     @SuppressLint("CheckResult")
-    fun getUsers(query: String) {
-        val queryModel =
-            OnlyInnameQueryModel(query) //use a queryBuilder in the future after implementing networking  //TODO
+    fun getUsers(queryModel: QueryModel) {
         getUsersUsecase.invoke(queryModel = queryModel)
             .subscribeOn(schedulerProvider.ioScheduler)
             .toList()
@@ -73,6 +73,12 @@ class MainActivityViewModel(
         event.value = Event(EventModel.Navigation(user))
     }
 
+    fun processQuery(editableText: String?) {
+        if (editableText.isNullOrBlank()) return
+        val queryModel = queryBuilder.buildQueryModel(editableText)
+        getUsers(queryModel)
+    }
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
@@ -81,6 +87,7 @@ class MainActivityViewModel(
     class Factory constructor(
         private val app: Application,
         private val getUsersUsecase: GetUsersUsecase,
+        private val queryBuilder: QueryBuilder,
         private val schedulerProvider: SchedulerProviderImpl,
         private val errorMapper: ErrorMapper
     ) : ViewModelProvider.AndroidViewModelFactory(app) {
@@ -89,6 +96,7 @@ class MainActivityViewModel(
             return MainActivityViewModel(
                 app = app,
                 getUsersUsecase = getUsersUsecase,
+                queryBuilder = queryBuilder,
                 schedulerProvider = schedulerProvider,
                 errorMapper = errorMapper
             ) as T

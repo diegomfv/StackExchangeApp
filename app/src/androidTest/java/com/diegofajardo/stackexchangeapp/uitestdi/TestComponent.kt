@@ -10,6 +10,7 @@ import com.diegofajardo.stackexchangeapp.ui.detail.DetailActivityViewModel
 import com.diegofajardo.stackexchangeapp.ui.main.MainActivityViewModel
 import com.diegofajardo.stackexchangeapp.ui.main.adapter.UsersAdapterUiManagerImpl
 import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
+import com.diegofajardo.stackexchangeapp.utils.OnlyInnameQueryBuilder
 
 class TestComponent(private val app: Application) : DIComponentImpl {
 
@@ -20,10 +21,9 @@ class TestComponent(private val app: Application) : DIComponentImpl {
     override fun provideMainActivityViewModelFactory() = MainActivityViewModel.Factory(
         app = app,
         getUsersUsecase = provideFakeGetUsersUsecase(),
+        queryBuilder = OnlyInnameQueryBuilder(),
         schedulerProvider = RxModule.schedulerProvider,
-        errorMapper = UtilsModule.provideErrorMapper(
-            app
-        )
+        errorMapper = UtilsModule.provideErrorMapper(app)
     )
 
     override fun provideDetailActivityViewModelFactory(user: User) =

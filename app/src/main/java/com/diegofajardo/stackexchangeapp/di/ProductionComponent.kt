@@ -11,6 +11,7 @@ class ProductionComponent(private val app: Application) : DIComponentImpl {
     override fun provideMainActivityViewModelFactory() = MainActivityViewModel.Factory(
         app = app,
         getUsersUsecase = UsecaseModule.usersUsecase,
+        queryBuilder = UtilsModule.provideOnlyInnameQueryBuilder(),
         schedulerProvider = RxModule.schedulerProvider,
         errorMapper = UtilsModule.provideErrorMapper(app)
     )

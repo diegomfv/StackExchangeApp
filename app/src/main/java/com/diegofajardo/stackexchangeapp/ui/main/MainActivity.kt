@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
             lastClickTime = SystemClock.elapsedRealtime()
             hideKeyboard()
-            mainActivityViewModel.getUsers(search_input?.text.toString())
+            mainActivityViewModel.processQuery(search_input?.text.toString())
         }
     }
 

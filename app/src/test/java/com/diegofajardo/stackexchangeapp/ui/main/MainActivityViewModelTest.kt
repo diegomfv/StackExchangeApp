@@ -3,14 +3,12 @@ package com.diegofajardo.stackexchangeapp.ui.main
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.diegofajardo.stackexchangeapp.data.model.OnlyInnameQueryModel
 import com.diegofajardo.stackexchangeapp.domain.BadgeCounts
 import com.diegofajardo.stackexchangeapp.domain.User
 import com.diegofajardo.stackexchangeapp.testutils.SchedulerProviderTrampoline
 import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
-import com.diegofajardo.stackexchangeapp.utils.ErrorMapper
-import com.diegofajardo.stackexchangeapp.utils.Event
-import com.diegofajardo.stackexchangeapp.utils.SchedulerProviderImpl
-import com.diegofajardo.stackexchangeapp.utils.SimpleErrorMapper
+import com.diegofajardo.stackexchangeapp.utils.*
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Observable
 import kotlinx.coroutines.runBlocking
@@ -29,6 +27,7 @@ class MainActivityViewModelTest {
 
     private val app: Application = mock()
     private val getUsersUsecase: GetUsersUsecase = mock()
+    private val queryBuilder: QueryBuilder = OnlyInnameQueryBuilder()
     private val schedulerProvider: SchedulerProviderImpl = SchedulerProviderTrampoline()
     private val errorMapper: ErrorMapper = SimpleErrorMapper(app)
 
@@ -40,7 +39,7 @@ class MainActivityViewModelTest {
     @Before
     fun setUp() {
         mainActivityViewModel =
-            MainActivityViewModel(app, getUsersUsecase, schedulerProvider, errorMapper)
+            MainActivityViewModel(app, getUsersUsecase, queryBuilder, schedulerProvider, errorMapper)
     }
 
     //TODO Add check for the argument (instead of any) when the way to extract the queryModel is updated
@@ -48,7 +47,7 @@ class MainActivityViewModelTest {
     fun `getUsers when called getUsersUsecase_invoke is called`() {
         whenever(getUsersUsecase.invoke(any())).doReturn(Observable.fromIterable(getListFakeUsers()))
 
-        mainActivityViewModel.getUsers("some query")
+        mainActivityViewModel.getUsers(OnlyInnameQueryModel("some value"))
         verify(getUsersUsecase, times(1)).invoke(any())
     }
 
@@ -57,7 +56,7 @@ class MainActivityViewModelTest {
         whenever(getUsersUsecase.invoke(any())).doReturn(Observable.fromIterable(emptyList<User>()))
         mainActivityViewModel.model.observeForever(observer)
 
-        mainActivityViewModel.getUsers("some query")
+        mainActivityViewModel.getUsers(OnlyInnameQueryModel("some value"))
         verify(observer, times(1)).onChanged(MainActivityViewModel.UiModel.Loading)
     }
 
@@ -68,7 +67,7 @@ class MainActivityViewModelTest {
         mainActivityViewModel.model.observeForever(observer)
 
         runBlocking {
-            mainActivityViewModel.getUsers("some query")
+            mainActivityViewModel.getUsers(OnlyInnameQueryModel("some value"))
             verify(
                 observer,
                 times(1)
@@ -82,7 +81,7 @@ class MainActivityViewModelTest {
         mainActivityViewModel.model.observeForever(observer)
 
         runBlocking {
-            mainActivityViewModel.getUsers("some query")
+            mainActivityViewModel.getUsers(OnlyInnameQueryModel("some value"))
             verify(observer, times(1)).onChanged(MainActivityViewModel.UiModel.EmptyContent)
         }
     }
@@ -94,7 +93,7 @@ class MainActivityViewModelTest {
         mainActivityViewModel.model.observeForever(observer)
 
         runBlocking {
-            mainActivityViewModel.getUsers("some query")
+            mainActivityViewModel.getUsers(OnlyInnameQueryModel("some value"))
             verify(observer, times(1)).onChanged(MainActivityViewModel.UiModel.Error("Error"))
         }
     }
@@ -107,7 +106,7 @@ class MainActivityViewModelTest {
         mainActivityViewModel.model.observeForever(observer)
 
         runBlocking {
-            mainActivityViewModel.getUsers("some query")
+            mainActivityViewModel.getUsers(OnlyInnameQueryModel("some value"))
             verify(
                 observer,
                 times(1)
@@ -124,6 +123,38 @@ class MainActivityViewModelTest {
             eventObserver,
             times(1)
         ).onChanged(ArgumentMatchers.refEq(Event(MainActivityViewModel.EventModel.Navigation(user))))
+    }
+
+    @Test
+    fun `processQuery when editable_text is null getUsers is not called`() {
+        val spy = spy(mainActivityViewModel)
+        mainActivityViewModel.processQuery(null)
+        verify(spy, never()).getUsers(any())
+    }
+
+    @Test
+    fun `processQuery when editable_text is empty getUsers is not called`() {
+        val spy = spy(mainActivityViewModel)
+        mainActivityViewModel.processQuery("")
+        verify(spy, never()).getUsers(any())
+    }
+
+    @Test
+    fun `processQuery when editable_text is blank getUsers is not called`() {
+        val spy = spy(mainActivityViewModel)
+        mainActivityViewModel.processQuery("     ")
+        verify(spy, never()).getUsers(any())
+    }
+
+    @Test
+    fun `processQuery when editable_text is not blank nor null getUsers is called`() {
+        val spy = spy(mainActivityViewModel)
+        whenever(getUsersUsecase.invoke(any())).doReturn(Observable.empty())
+
+        runBlocking {
+            spy.processQuery("some value")
+            verify(spy, times(1)).getUsers(any())
+        }
     }
 
     private fun getListFakeUsers(): List<User> {

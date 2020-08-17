@@ -3,14 +3,13 @@ package com.diegofajardo.stackexchangeapp.ui.main
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.diegofajardo.stackexchangeapp.data.model.OnlyInnameQueryModel
 import com.diegofajardo.stackexchangeapp.data.toDomainUser
 import com.diegofajardo.stackexchangeapp.testdi.TestUsecaseModule
 import com.diegofajardo.stackexchangeapp.testutils.SchedulerProviderTrampoline
 import com.diegofajardo.stackexchangeapp.testutils.TestDefaultValues.defaultFakeUsers
 import com.diegofajardo.stackexchangeapp.usecase.GetUsersUsecase
-import com.diegofajardo.stackexchangeapp.utils.ErrorMapper
-import com.diegofajardo.stackexchangeapp.utils.SchedulerProviderImpl
-import com.diegofajardo.stackexchangeapp.utils.SimpleErrorMapper
+import com.diegofajardo.stackexchangeapp.utils.*
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
@@ -26,6 +25,7 @@ class MainActivityViewModelIntegrationTest {
 
     private val app: Application = mock()
     private val getUsersUsecase: GetUsersUsecase = TestUsecaseModule.fakeGetUsersUsecase
+    private val queryBuilder: QueryBuilder = OnlyInnameQueryBuilder()
     private val schedulerProvider: SchedulerProviderImpl = SchedulerProviderTrampoline()
     private val errorMapper: ErrorMapper = SimpleErrorMapper(app)
 
@@ -36,7 +36,7 @@ class MainActivityViewModelIntegrationTest {
     @Before
     fun setUp() {
         mainActivityViewModel =
-            MainActivityViewModel(app, getUsersUsecase, schedulerProvider, errorMapper)
+            MainActivityViewModel(app, getUsersUsecase, queryBuilder, schedulerProvider, errorMapper)
     }
 
     @Test
@@ -44,7 +44,7 @@ class MainActivityViewModelIntegrationTest {
         mainActivityViewModel.model.observeForever(observer)
 
         runBlocking {
-            mainActivityViewModel.getUsers("some query")
+            mainActivityViewModel.getUsers(OnlyInnameQueryModel("some value"))
             verify(observer, times(1))
                 .onChanged(MainActivityViewModel.UiModel.Content(defaultFakeUsers.map { it.toDomainUser() }))
         }
